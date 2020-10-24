@@ -18,3 +18,8 @@ header {
   margin: 3rem;
   justify-content: flex-end;
 }
+
+.row{
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}

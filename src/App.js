@@ -4,7 +4,7 @@ import React from "react";
 
 function Profilebutton(props){
   return(
-    <button>{props.name}</button>
+    <button>{props.name} </button>
   )
 }
 
@@ -16,17 +16,24 @@ class Profile extends React.Component {
   }
   render(){
   return(
-    <div> 
-      <p>Prenom:</p> <p>Nom:</p> <p>Date de naissance:</p>
+    <div>
+      <div class="row">
+        <div class="col-6">
+            <p>Prenom: {this.props.prenom}</p>
+        </div>
+        <div class="col-6">
+            <p>Nom: {this.props.nom}</p>
+        </div>
+      </div>
+      <p>Date de naissance: {this.props.birth}</p>
       <button>Change style</button>
     </div>
-    
   )
 }
 }
 
 function App() {
- let activeprofile =0;
+ let activeprofile =2;
   const profileinfo = [
     {
       prenom: "Pierre",
@@ -36,24 +43,34 @@ function App() {
     {
       prenom: "Martine",
       nom: "Matterell",
-      birth: "23.09.1998"
+      birth: "25.04.1992"
     },
     {
       prenom: "Camille",
       nom: "Puissan",
-      birth: "23.09.1998"
+      birth: "11.12.1994"
+    }
+  ];
+  const pic = [
+    {
+       link:"img/Pierre.jpg"
+    },
+    {
+      link:"img/Martine.jpg"
+    },
+    {
+      link:"img/Camille.jpg"
     }
   ];
   return (
     <div className="App">
       <header>
         {profileinfo.map((profil, index)=>
-        <Profilebutton name={profil.prenom} key={index}></Profilebutton>)}
+        <Profilebutton id={profil.prenom} {onclick=""} name={profil.prenom} key={index}></Profilebutton>)}
       </header>
       <body>
-          <Profile prenom={profileinfo[activeprofile].prenom}></Profile>
-          <Profile nom={profileinfo[activeprofile].nom}></Profile>
-          <Profile birth={profileinfo[activeprofile].birth}></Profile>
+          <img src={pic[activeprofile].link} alt=""/>
+          <Profile prenom={profileinfo[activeprofile].prenom} nom={profileinfo[activeprofile].nom} birth={profileinfo[activeprofile].birth}></Profile>
       </body>
     </div>
   );
