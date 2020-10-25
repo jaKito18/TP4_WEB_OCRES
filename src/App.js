@@ -57,16 +57,26 @@ class Profile extends React.Component {
     return(
       <div className="border" style={{'background-color': this.state.backgroundColour}}>
         <img src={this.props.pic} alt="" height="200px"/>
-        <div className="row">
-          <div className="col-6">
-              <p>Prenom: {this.props.prenom}</p>
+        <div className="row margin">
+          <div className="col-4 text-left">
+              <p>Prenom: </p>
+              <p>Date de naissance: </p>
           </div>
-          <div className="col-6">
-              <p>Nom: {this.props.nom}</p>
+          <div className="col-3 text-left"> 
+            <p>{this.props.prenom}</p>
+            <p>{this.props.birth}</p>
+          </div>
+          <div className="col-2 text-left">
+            <p>Nom: </p>
+          </div>
+          <div className="col-3 text-left">
+              <p>{this.props.nom}</p>
           </div>
         </div>
-        <p>Date de naissance: {this.props.birth}</p>
-        <button onClick={this.changeStyle}>Change style</button>
+        <div className="margin text-right">
+          <button onClick={this.changeStyle}>Change style</button>
+        </div>
+        
       </div>
     )
   }
