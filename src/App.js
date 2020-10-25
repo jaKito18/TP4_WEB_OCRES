@@ -18,7 +18,7 @@ const profileinfo = [
   },
   {
     prenom: "Camille",
-    nom: "Puis san",
+    nom: "Puissan",
     birth: "11.12.1994",
     link:"img/Camille.jpg",
     comment:"Ca parrait que tu aimes les moutons!"
@@ -28,7 +28,7 @@ const profileinfo = [
 
 function Profilebutton(props){
   return(
-    <button onClick={props.onclick} >{props.name} </button>
+    <button className="headerbutton" onClick={props.onclick} >{props.name} </button>
   )
 }
 
@@ -81,7 +81,7 @@ class Profile extends React.Component {
           <button onClick={this.changeStyle}>Change style</button>
         </div>
       </div>
-      <div className="borderstyle">
+      <div className="borderstyle commentmargin">
           <p class="text-left margin">"{this.props.comment}"</p>
       </div>
       </div>
