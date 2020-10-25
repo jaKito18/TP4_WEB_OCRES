@@ -1,79 +1,106 @@
 import './App.css';
 import React from "react";
 
+const profileinfo = [
+  {
+    prenom: "Pierre",
+    nom: "Chartier",
+    birth: "23.09.1998",
+    link:"img/Pierre.jpg"
+  },
+  {
+    prenom: "Martine",
+    nom: "Matterell",
+    birth: "25.04.1992",
+    link:"img/Martine.jpg"
+  },
+  {
+    prenom: "Camille",
+    nom: "Puissan",
+    birth: "11.12.1994",
+    link:"img/Camille.jpg"
+  }
+];
+
 
 function Profilebutton(props){
   return(
-    <button>{props.name} </button>
+    <button onClick={props.onclick} >{props.name} </button>
   )
 }
+
+
 
 class Profile extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      backgroundColour: this.getRandomColourString()
     }
+    this.changeStyle = this.changeStyle.bind(this);
   }
+
+  getRandomColourString() {
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+    return `rgba(${red},${green},${blue}, 0.3)`;
+  }
+
+  changeStyle() {
+    this.setState({
+      backgroundColour: this.getRandomColourString(),
+    })
+  }
+
   render(){
-  return(
-    <div>
-      <div class="row">
-        <div class="col-6">
-            <p>Prenom: {this.props.prenom}</p>
+    return(
+      <div className="border" style={{'background-color': this.state.backgroundColour}}>
+        <img src={this.props.pic} alt="" height="200px"/>
+        <div className="row">
+          <div className="col-6">
+              <p>Prenom: {this.props.prenom}</p>
+          </div>
+          <div className="col-6">
+              <p>Nom: {this.props.nom}</p>
+          </div>
         </div>
-        <div class="col-6">
-            <p>Nom: {this.props.nom}</p>
-        </div>
+        <p>Date de naissance: {this.props.birth}</p>
+        <button onClick={this.changeStyle}>Change style</button>
       </div>
-      <p>Date de naissance: {this.props.birth}</p>
-      <button>Change style</button>
-    </div>
-  )
-}
+    )
+  }
 }
 
-function App() {
- let activeprofile =2;
-  const profileinfo = [
-    {
-      prenom: "Pierre",
-      nom: "Chartier",
-      birth: "23.09.1998"
-    },
-    {
-      prenom: "Martine",
-      nom: "Matterell",
-      birth: "25.04.1992"
-    },
-    {
-      prenom: "Camille",
-      nom: "Puissan",
-      birth: "11.12.1994"
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      activeprofile: 2
     }
-  ];
-  const pic = [
-    {
-       link:"img/Pierre.jpg"
-    },
-    {
-      link:"img/Martine.jpg"
-    },
-    {
-      link:"img/Camille.jpg"
-    }
-  ];
+    this.handleclick = this.handleclick.bind(this);
+  } 
+  handleclick(index){
+    console.log(index)
+    this.setState({activeprofile:index})
+  }
+  render(){
   return (
     <div className="App">
       <header>
         {profileinfo.map((profil, index)=>
-        <Profilebutton id={profil.prenom} {onclick=""} name={profil.prenom} key={index}></Profilebutton>)}
+        <Profilebutton onclick={()=>this.handleclick(index)} name={profil.prenom} key={index}></Profilebutton>)}
       </header>
-      <body>
-          <img src={pic[activeprofile].link} alt=""/>
-          <Profile prenom={profileinfo[activeprofile].prenom} nom={profileinfo[activeprofile].nom} birth={profileinfo[activeprofile].birth}></Profile>
-      </body>
+      <main className="container">
+          
+          <Profile prenom={profileinfo[this.state.activeprofile].prenom} 
+          nom={profileinfo[this.state.activeprofile].nom} 
+          birth={profileinfo[this.state.activeprofile].birth}
+          pic={profileinfo[this.state.activeprofile].link}></Profile>
+      </main>
     </div>
   );
+  }
 }
 
 
