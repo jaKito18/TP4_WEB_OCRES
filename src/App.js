@@ -6,19 +6,22 @@ const profileinfo = [
     prenom: "Pierre",
     nom: "Chartier",
     birth: "23.09.1998",
-    link:"img/Pierre.jpg"
+    link:"img/Pierre.jpg",
+    comment:"Hey yo man, quite a nice pic you posted last sunday, where was it?"
   },
   {
     prenom: "Martine",
     nom: "Matterell",
     birth: "25.04.1992",
-    link:"img/Martine.jpg"
+    link:"img/Martine.jpg",
+    comment: "Hey Martine comment vas-tu?"
   },
   {
     prenom: "Camille",
-    nom: "Puissan",
+    nom: "Puis san",
     birth: "11.12.1994",
-    link:"img/Camille.jpg"
+    link:"img/Camille.jpg",
+    comment:"Ca parrait que tu aimes les moutons!"
   }
 ];
 
@@ -55,8 +58,9 @@ class Profile extends React.Component {
 
   render(){
     return(
-      <div className="border" style={{'background-color': this.state.backgroundColour}}>
-        <img src={this.props.pic} alt="" height="200px"/>
+      <div>
+      <div className="borderstyle" style={{'background-color': this.state.backgroundColour}}>
+        <img src={this.props.pic} alt="" height="200px" className="img"/>
         <div className="row margin">
           <div className="col-4 text-left">
               <p>Prenom: </p>
@@ -76,8 +80,12 @@ class Profile extends React.Component {
         <div className="margin text-right">
           <button onClick={this.changeStyle}>Change style</button>
         </div>
-        
       </div>
+      <div className="borderstyle">
+          <p class="text-left margin">"{this.props.comment}"</p>
+      </div>
+      </div>
+
     )
   }
 }
@@ -106,7 +114,9 @@ class App extends React.Component {
           <Profile prenom={profileinfo[this.state.activeprofile].prenom} 
           nom={profileinfo[this.state.activeprofile].nom} 
           birth={profileinfo[this.state.activeprofile].birth}
-          pic={profileinfo[this.state.activeprofile].link}></Profile>
+          pic={profileinfo[this.state.activeprofile].link}
+          comment={profileinfo[this.state.activeprofile].comment}>
+          </Profile>
       </main>
     </div>
   );

@@ -26,5 +26,19 @@ header {
 
 .margin{
   margin: 3rem;
+}
+.img{
+  display: inline-box;
+  margin: 0 auto;
+  margin-top: 3rem;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+}
 
+.borderstyle{
+  border-style: solid;
+  border-color: black;
 }
